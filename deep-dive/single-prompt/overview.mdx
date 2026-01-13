@@ -1,0 +1,41 @@
+---
+title: "Overview"
+description: "Basics of a single prompt agent"
+icon: circle-info
+---
+
+## 🎯 Single Prompt Flow
+
+The single prompt flow is the **simplest** way to create an AI agent. You are supposed to describe
+the entire expected behavior in a single prompt - you can check out our [guide for best practices](/deep-dive/single-prompt/prompting-best-practices) 📚. 
+
+For example - the below images shows the prompt for a very simple hotel booking agent 🏨:
+
+![image](/images/single-prompt/simple-prompt.png)
+
+## 🛠️ Tool Integration
+
+On top of it, the agent can use **tool calls** to trigger real world actions like make an api call OR perform a knowledge base search 🔍. 
+You can add multiple tools to your agent and refer them in your prompt via the tool name. 
+
+For example - the restaurant reservation agent can be enhanced with a "transfer call" tool to 
+forward corporate booking requests to a human agent 👤.
+
+| 🔧 Add tool | 💬 Refer in prompt |
+|:-------------------------:|:-------------------------:|
+|![Transfer Call Tool](/images/single-prompt/transfer-call-tool.png)|![Prompt with Transfer Call Tool](/images/single-prompt/prompt-with-transfer-call-tool.png)|
+
+## 📋 Available Tools
+
+The next sections describe all the tool types currently supported:
+
+- 📞 [End Call](/deep-dive/single-prompt/tool-calls#end-call-tool)
+- 🔄 [Transfer Call](/deep-dive/single-prompt/tool-calls#transfer-call-tool)  
+- 🌐 [API Call](/deep-dive/single-prompt/tool-calls#api-call-tool)
+- 📊 [Dynamic Variable Extraction](/deep-dive/single-prompt/tool-calls#dynamic-variable-extraction-tool)
+- 🔍 [Knowledge Base Search](/deep-dive/single-prompt/tool-calls#knowledge-base-search-tool)
+
+
+
+
+

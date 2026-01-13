@@ -1,0 +1,178 @@
+---
+title: "Prompts"
+description: "Define your agent's personality, behavior, and boundaries."
+---
+
+Prompts tell the LLM who your agent is, how it should respond, and what it should or shouldn't do. You add prompts to `self.context`, which holds the full conversation history sent to the LLM.
+
+## Basic Structure
+
+Call `self.context.add_message()` in `__init__` to set the system prompt.
+
+```python
+self.context.add_message({
+    "role": "system",
+    "content": """You are a customer support agent for Acme Corp.
+
+Your role:
+- Help customers with orders, returns, and product questions
+- Be friendly but concise
+- Use tools to look up order information
+
+Rules:
+- Never discuss competitors
+- Escalate billing disputes to a human
+- Keep responses under 2 sentences when possible"""
+})
+```
+
+The `role` can be `"system"` (instructions), `"user"` (customer input), or `"assistant"` (agent responses). User messages are added automatically by the SDK.
+
+## Prompt Components
+
+| Component | Purpose | Example |
+|-----------|---------|---------|
+| **Role** | Who the agent is | "You are a support agent for Acme" |
+| **Responsibilities** | What the agent does | "Help with orders and returns" |
+| **Tone** | How the agent speaks | "Friendly, professional, concise" |
+| **Rules** | Constraints and boundaries | "Never discuss competitors" |
+| **Tool guidance** | When to use tools | "Use get_order_status for order queries" |
+
+## Example Prompts
+
+<Tabs>
+  <Tab title="Support">
+    ```python
+    """You are a support agent for Acme Store.
+
+    Responsibilities:
+    - Answer product questions
+    - Check order status using tools
+    - Process simple returns
+
+    Tone: Friendly and helpful, but concise.
+
+    Rules:
+    - Keep responses under 2 sentences
+    - For complex issues, offer to transfer
+    - Never share internal policies"""
+    ```
+  </Tab>
+  <Tab title="Scheduling">
+    ```python
+    """You are a scheduling assistant for Dr. Smith's office.
+
+    Responsibilities:
+    - Schedule, reschedule, and cancel appointments
+    - Answer questions about office hours
+
+    Required for new appointments:
+    - Full name, Phone number, Reason for visit
+
+    Rules:
+    - Confirm details before booking
+    - Don't provide medical advice
+    - Ask for one piece of info at a time"""
+    ```
+  </Tab>
+  <Tab title="Sales">
+    ```python
+    """You are a sales rep for TechCorp.
+
+    Goal: Qualify leads by understanding needs and budget.
+
+    Qualification criteria:
+    - Company size (50+ employees)
+    - Budget authority
+    - Timeline (within 6 months)
+
+    Approach:
+    - Be conversational, not interrogative
+    - If qualified, offer to schedule a demo"""
+    ```
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+### Be Specific
+
+```python
+# Too vague
+"Be helpful and answer questions."
+
+# Specific
+"Answer questions about returns. Returns accepted within 30 days with receipt."
+```
+
+### Keep It Short
+
+The prompt is sent with every LLM call. Shorter prompts save tokens and reduce latency.
+
+```python
+# Verbose
+"""You are an extremely helpful and friendly customer service representative 
+who always aims to provide the best possible experience..."""
+
+# Concise
+"Acme support agent. Be helpful, professional, concise."
+```
+
+### Guide Tool Usage
+
+```python
+"""When the user asks about an order:
+1. Ask for order ID if not provided
+2. Use get_order_status to look it up
+3. Summarize the status clearly"""
+```
+
+## Dynamic Prompts
+
+Sometimes you need to adjust the prompt based on who's calling or what stage of the conversation you're in.
+
+**When to use dynamic prompts:**
+- Different service for VIP vs regular customers
+- Passing context when handing off between agents
+- Personalizing with the caller's name or account info
+
+```python
+class MyAgent(OutputAgentNode):
+    async def start(self, init_event, task_manager):
+        await super().start(init_event, task_manager)
+        
+        # Get customer info passed at session start
+        ctx = init_event.session_context
+        tier = ctx.initial_variables.get("tier", "standard")
+        name = ctx.initial_variables.get("name", "")
+        
+        base = "You are a support agent for Acme."
+        
+        if tier == "premium":
+            self.context.add_message({
+                "role": "system",
+                "content": f"{base} This is {name}, a premium customer. "
+                          "Prioritize their request."
+            })
+        else:
+            self.context.add_message({
+                "role": "system",
+                "content": f"{base} Ask how you can help."
+            })
+```
+
+---
+
+## Tips
+
+<AccordionGroup>
+  <Accordion title="Test edge cases">
+    Try asking about competitors, off-topic questions, or getting frustrated. Adjust your prompt until the agent handles them well.
+  </Accordion>
+  <Accordion title="Include tool guidance">
+    If your agent has tools, tell it when to use them. "Use get_order_status when the user asks about an order."
+  </Accordion>
+  <Accordion title="Set clear boundaries">
+    Explicitly state what the agent should NOT do. "Don't discuss pricing—direct to sales team."
+  </Accordion>
+</AccordionGroup>
