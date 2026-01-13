@@ -17,22 +17,21 @@ Most production agents need branching.
 
 Start by mapping the conversation:
 
-```
-                    ┌─────────┐
-                    │ Greeting│
-                    └────┬────┘
-                         │
-              ┌──────────┼──────────┐
-              ▼          ▼          ▼
-         ┌────────┐ ┌────────┐ ┌────────┐
-         │ Orders │ │Support │ │ Other  │
-         └───┬────┘ └───┬────┘ └────────┘
-             │          │
-        ┌────┴────┐     │
-        ▼         ▼     ▼
-    ┌───────┐ ┌──────┐ ┌──────────┐
-    │Status │ │Cancel│ │Escalation│
-    └───────┘ └──────┘ └──────────┘
+```mermaid
+flowchart TD
+    A[Greeting] --> B{Intent?}
+    B -->|Orders| C[Orders]
+    B -->|Support| D[Support]
+    B -->|Other| E[Other]
+    C --> F[Status]
+    C --> G[Cancel]
+    D --> H[Escalation]
+    
+    style A fill:#10b981,color:#fff
+    style B fill:#6366f1,color:#fff
+    style C fill:#3b82f6,color:#fff
+    style D fill:#3b82f6,color:#fff
+    style E fill:#3b82f6,color:#fff
 ```
 
 ## State Machine Approach
