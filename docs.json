@@ -19,47 +19,20 @@
           {
             "group": "Capabilities",
             "pages": [
-              {
-                "page": "intro/welcome",
-                "icon": "house"
-              },
-              {
-                "page": "intro/capabilities/agents-explained",
-                "icon": "robot"
-              },
-              {
-                "page": "intro/capabilities/knowledge-base",
-                "icon": "book"
-              },
-              {
-                "page": "intro/capabilities/voice-speech",
-                "icon": "microphone"
-              },
-              {
-                "page": "intro/capabilities/campaigns",
-                "icon": "megaphone"
-              },
-              {
-                "page": "intro/capabilities/telephony",
-                "icon": "phone"
-              },
-              {
-                "page": "intro/capabilities/integrations",
-                "icon": "plug"
-              }
+              "intro/welcome",
+              "intro/capabilities/agents-explained",
+              "intro/capabilities/knowledge-base",
+              "intro/capabilities/voice-speech",
+              "intro/capabilities/campaigns",
+              "intro/capabilities/telephony",
+              "intro/capabilities/integrations"
             ]
           },
           {
             "group": "Reference",
             "pages": [
-              {
-                "page": "intro/reference/changelog",
-                "icon": "clock-rotate-left"
-              },
-              {
-                "page": "intro/reference/support",
-                "icon": "life-ring"
-              }
+              "intro/reference/changelog",
+              "intro/reference/support"
             ]
           }
         ]
