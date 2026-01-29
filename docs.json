@@ -272,46 +272,6 @@
                   "dev/build/analytics/call-metrics",
                   "dev/build/analytics/post-call-analytics"
                 ]
-              },
-              {
-                "group": "Voice & Speech",
-                "pages": [
-                  {
-                    "group": "Voice Models",
-                    "pages": [
-                      "dev/build/voice-speech/voice-models/voice-selection",
-                      "dev/build/voice-speech/voice-models/available-voices",
-                      "dev/build/voice-speech/voice-models/examples"
-                    ]
-                  },
-                  {
-                    "group": "STT Configuration",
-                    "pages": [
-                      "dev/build/voice-speech/stt-configuration/configuration",
-                      "dev/build/voice-speech/stt-configuration/providers",
-                      "dev/build/voice-speech/stt-configuration/parameters",
-                      "dev/build/voice-speech/stt-configuration/examples"
-                    ]
-                  },
-                  {
-                    "group": "TTS Configuration",
-                    "pages": [
-                      "dev/build/voice-speech/tts-configuration/configuration",
-                      "dev/build/voice-speech/tts-configuration/providers",
-                      "dev/build/voice-speech/tts-configuration/parameters",
-                      "dev/build/voice-speech/tts-configuration/examples"
-                    ]
-                  },
-                  {
-                    "group": "Advanced Voice",
-                    "pages": [
-                      "dev/build/voice-speech/advanced-voice/voice-cloning",
-                      "dev/build/voice-speech/advanced-voice/audio-quality",
-                      "dev/build/voice-speech/advanced-voice/custom-tts-stt",
-                      "dev/build/voice-speech/advanced-voice/examples"
-                    ]
-                  }
-                ]
               }
             ]
           },
