@@ -1,10 +1,10 @@
 ---
 title: "Prompting Guide"
-sidebarTitle: "Prompts"
-description: "Craft prompts that make your voice agent feel natural and effective."
+sidebarTitle: "Prompting"
+description: "Write prompts that make your voice agent sound natural, stay on track, and get work done."
 ---
 
-A well-crafted prompt is the difference between a voice agent that frustrates users and one that delights them. This guide covers everything from SDK basics to advanced prompting strategies.
+A well defined prompt is the difference between a voice agent that frustrates users and one that delights them. This guide covers everything from SDK basics to advanced prompting strategies.
 
 ## Adding Prompts in the SDK
 
@@ -40,7 +40,7 @@ Voice agents operate under constraints that chatbots don't face:
 
 | Constraint | Impact |
 |------------|--------|
-| **Real-time pressure** | No time for visible "thinking"—responses must feel immediate |
+| **Real-time pressure** | No time for visible "thinking", responses must feel immediate |
 | **No visual fallback** | Can't show lists, forms, or buttons. Everything is spoken |
 | **Linear attention** | Users can't skim or scroll back. Information must be chunked |
 | **Interruptions happen** | Users talk over agents, change minds, go on tangents |
@@ -50,20 +50,20 @@ These constraints mean your prompt needs to be clearer, more structured, and mor
 
 ---
 
-## Prompt Anatomy
+## Prompt Building Blocks
 
-We recommend organizing your prompt into these sections:
+We recommend organizing your prompt into these sections, so the agent always knows: who it is, how to behave, what it knows, what it can do, and where the edges are.
 
-```
-1. Role & Objective
-2. Personality & Tone
-3. Context (if applicable)
-4. Instructions / Rules
-5. Tools (if applicable)
-6. Conversation Flow
-7. Guardrails (if applicable)
-```
 
+1. **Role & Objective**: "You are a support specialist for…"
+2. **Personality & Tone**: "Friendly, calm, never condescending"
+3. **Context (if applicable)**: "Customer name/order details for this outbound call."
+4. **Instructions / Rules**: "Always verify identity before discussing accounts."
+5. **Tools (if applicable)**: "Use `check_order_status` after confirming order ID."
+6. **Conversation Flow**: "Open → Diagnose → Resolve → Close."
+7. **Guardrails (if applicable)**: "Never provide legal advice; escalate abusive callers."
+
+  
 This gives the agent a clear mental model: *who am I, how should I behave, what do I know, what can I do, how should the conversation go, and what are my limits?*
 
 ---
@@ -244,7 +244,7 @@ Define what the agent should **never** do. These are your safety nets.
 
 ## Advanced Tips
 
-### Information Chunking
+### Chunk Information
 
 Voice users can only hold so much in memory. Break up complex information:
 
@@ -253,7 +253,7 @@ Share order information in digestible pieces. Start with status, then ask if
 they want details like tracking or delivery date.
 ```
 
-### Confirmation for Critical Info
+### Confirm Critical Information
 
 For phone numbers, dates, amounts—confirm them:
 
@@ -262,7 +262,7 @@ For important values, repeat them back naturally. Mishearing happens—a quick
 confirmation prevents bigger problems.
 ```
 
-### Graceful Boundaries
+### Set Boundaries Gracefully
 
 When you can't help, be natural about it:
 
@@ -278,11 +278,11 @@ is better than "I am not authorized to perform that action."
 Before deploying, verify:
 
 - **Clear objective**: Does the agent know what success looks like?
-- **Defined personality**: Will it sound human or robotic?
+- **Defined personality**: Will it sound human or robotic? Is tone appropriate?
 - **Structured flow**: Are main conversation paths clear?
 - **Tool instructions**: Does it know when and how to use each tool?
-- **Edge cases**: Have you handled common "what ifs"?
-- **Guardrails**: Are boundaries clear and appropriate?
+- **Edge cases**: Have you handled common edge cases (“what if” scenarios)?
+- **Guardrails**: Are boundaries clear and appropriate? 
 - **No contradictions**: Do all instructions align?
 - **Readable format**: Is the prompt easy to scan?
 
@@ -385,6 +385,11 @@ Summarize what was done, confirm next steps, thank them.
 
 ## Final Thought
 
-The best prompts feel like onboarding a new employee. You're not giving them a script—you're explaining who they are, what they're trying to achieve, how they should behave, and what tools they have. Then you trust them to handle the conversation.
+The best prompts feel like onboarding a new teammate. You're not giving them a script; you're explaining who they are, what they're trying to achieve, how they should behave, and what tools they have. Then you trust them to handle the conversation.
 
 **Clear structure + specific guidance + room for adaptation = an agent users enjoy talking to.**
+
+<Note>
+    Want an exhaustive, line-by-line prompt breakdown? See the dedicated guide in our cookbook:
+    [Voice Agent Prompting Guide](https://github.com/smallest-inc/cookbook/blob/main/best-practices/voice_agent_prompting_guide.md).
+</Note>

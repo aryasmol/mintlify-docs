@@ -1,0 +1,77 @@
+---
+title: "Campaigns"
+sidebarTitle: "Overview"
+description: "Automate outbound voice calls at scale."
+---
+
+**Campaigns** turn your AI agents into outbound calling machines. Define who to call, connect your agent, and let the system handle the rest—dial, connect, retry, track.
+
+## What is a Campaign?
+
+A campaign is the orchestration layer for outbound calls. It combines three things:
+
+1. **Agent** — The AI that handles each conversation
+2. **Audience** — The list of phone numbers to call
+3. **Phone Number** — Your outbound caller ID
+
+When you start a campaign, the system automatically dials each contact in your audience and connects them to your agent.
+
+---
+
+## Why Use Campaigns?
+
+Manual outbound calling doesn't scale. Campaigns solve the operational side so your agents can focus on conversations.
+
+| Capability | Description |
+|------------|-------------|
+| **Parallel dialing** | Call multiple contacts simultaneously |
+| **Automatic retries** | Failed calls retry based on your settings |
+| **Progress tracking** | See called, connected, and completed counts in real-time |
+| **Execution history** | Full audit trail of every campaign run |
+
+---
+
+## Campaign Lifecycle
+
+Every campaign moves through these states:
+
+| State | Meaning |
+|-------|---------|
+| `draft` | Created but not yet started |
+| `running` | Actively dialing and connecting calls |
+| `paused` | Temporarily stopped; can resume |
+| `completed` | All contacts processed |
+
+You control the transitions: start, pause, resume, or delete.
+
+---
+
+## Key Concepts
+
+### Audiences Are Reusable
+
+An audience is just a contact list. You can run multiple campaigns against the same audience, or create new audiences for different segments.
+
+### Retries Are Configurable
+
+Set `maxRetries` (0–10) and `retryDelay` (1–1440 minutes) when creating a campaign. Failed calls—busy signals, no answer, network issues—automatically retry according to your policy.
+
+### Metrics Are Real-Time
+
+While a campaign runs, you can poll for:
+- `total_participants` — Size of the audience
+- `contacts_called` — Dial attempts made
+- `contacts_connected` — Successful connections
+
+---
+
+## What's Next
+
+<CardGroup cols={2}>
+  <Card title="Audiences" icon="users" href="/dev/build/campaigns/managing-audiences">
+    Create and manage contact lists for your campaigns.
+  </Card>
+  <Card title="Running Campaigns" icon="rocket" href="/dev/build/campaigns/creating-campaigns">
+    Create, start, monitor, and clean up campaigns.
+  </Card>
+</CardGroup>
